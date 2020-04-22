@@ -13,6 +13,7 @@
 		17BC161F244FEB2E00CF42CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17BC161D244FEB2E00CF42CB /* Main.storyboard */; };
 		17BC1621244FEB3000CF42CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17BC1620244FEB3000CF42CB /* Assets.xcassets */; };
 		17BC1624244FEB3000CF42CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17BC1622244FEB3000CF42CB /* LaunchScreen.storyboard */; };
+		17BC162C244FEB7A00CF42CB /* Starfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC162B244FEB7A00CF42CB /* Starfield.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,10 @@
 		17BC1620244FEB3000CF42CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17BC1623244FEB3000CF42CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17BC1625244FEB3000CF42CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17BC162B244FEB7A00CF42CB /* Starfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starfield.swift; sourceTree = "<group>"; };
+		17BC162E244FFCBE00CF42CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		17BC1630244FFCD400CF42CB /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
+		17BC1632244FFFD700CF42CB /* Starfield.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Starfield.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +47,7 @@
 			children = (
 				17BC1616244FEB2E00CF42CB /* Starfield */,
 				17BC1615244FEB2E00CF42CB /* Products */,
+				17BC162D244FFCBE00CF42CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +62,26 @@
 		17BC1616244FEB2E00CF42CB /* Starfield */ = {
 			isa = PBXGroup;
 			children = (
+				17BC1632244FFFD700CF42CB /* Starfield.entitlements */,
 				17BC1617244FEB2E00CF42CB /* AppDelegate.swift */,
 				17BC1619244FEB2E00CF42CB /* SceneDelegate.swift */,
 				17BC161B244FEB2E00CF42CB /* ViewController.swift */,
+				17BC162B244FEB7A00CF42CB /* Starfield.swift */,
 				17BC161D244FEB2E00CF42CB /* Main.storyboard */,
 				17BC1620244FEB3000CF42CB /* Assets.xcassets */,
 				17BC1622244FEB3000CF42CB /* LaunchScreen.storyboard */,
 				17BC1625244FEB3000CF42CB /* Info.plist */,
 			);
 			path = Starfield;
+			sourceTree = "<group>";
+		};
+		17BC162D244FFCBE00CF42CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17BC1630244FFCD400CF42CB /* ARKit.framework */,
+				17BC162E244FFCBE00CF42CB /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17BC162C244FEB7A00CF42CB /* Starfield.swift in Sources */,
 				17BC161C244FEB2E00CF42CB /* ViewController.swift in Sources */,
 				17BC1618244FEB2E00CF42CB /* AppDelegate.swift in Sources */,
 				17BC161A244FEB2E00CF42CB /* SceneDelegate.swift in Sources */,
@@ -284,6 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Starfield/Starfield.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4BB235M4GL;
 				INFOPLIST_FILE = Starfield/Info.plist;
@@ -293,6 +312,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Irorio.Starfield;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -302,6 +322,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Starfield/Starfield.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4BB235M4GL;
 				INFOPLIST_FILE = Starfield/Info.plist;
@@ -311,6 +332,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Irorio.Starfield;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

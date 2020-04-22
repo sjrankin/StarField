@@ -8,13 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
+class ViewController: UIViewController
+{
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        StarFieldViewer.layer.borderColor = UIColor.systemYellow.cgColor
+        StarFieldViewer.layer.borderWidth = 4.0
+        StarFieldViewer.layer.cornerRadius = 10.0
     }
 
-
+    @IBOutlet weak var StarFieldViewer: Starfield!
 }
 
