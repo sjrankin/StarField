@@ -52,48 +52,82 @@ class Starfield: SCNView
         self.backgroundColor = UIColor.black
         self.autoenablesDefaultLighting = false
         
-        FillStars(To: 1000)
+        //FillStars(To: 1000)
     }
     
     var CameraNode: SCNNode? = nil
     var LightNode: SCNNode? = nil
     
-    func FillStars(To Count: Int)
+    func FillStars(To Count: Int,
+                   MaxSize: Double = 0.08,
+                   StarColor: UIColor = UIColor.white,
+                   UseNaturalStarColors: Bool = true,
+                   WithSpeed: CGFloat = 1.0)
     {
+        GlobalSpeed = WithSpeed
         for _ in 0 ..< Count
         {
-            MakeStar(StarColor: UIColor.white, SpeedMultiplier: 1.0,
-                     MaxStarSize: 0.1)
+            MakeStar(StarColor: UIColor.white,
+                     MaxStarSize: 0.08)
         }
     }
     
-    func MakeStar(StarColor: UIColor, SpeedMultiplier: Double = 1.0, MaxStarSize: Double = 0.15)
+    func ChangeSpeed(To NewSpeed: Double)
     {
-        if SpeedMultiplier == 0.0
+        if self.scene?.rootNode.childNodes == nil
         {
-            fatalError("SpeedMultipler may not be 0.0.")
+            return
         }
+        if (self.scene?.rootNode.childNodes.count)! > 0
+        {
+            GlobalSpeed = CGFloat(NewSpeed)
+            for StarNode in self.scene!.rootNode.childNodes
+            {
+                for k in StarNode.actionKeys
+                {
+                    if let SomeAction = StarNode.action(forKey: k)
+                    {
+                        SomeAction.speed = CGFloat(NewSpeed)
+                    }
+                }
+            }
+        }
+    }
+    
+    var GlobalSpeed: CGFloat = 1.0
+    
+    func MakeStar(StarColor: UIColor, MaxStarSize: Double = 0.15,
+                  UseNaturalStarColors: Bool = false)
+    {
         let P = PointInSphere(Radius: 100.0)
         let StarSize = Double.random(in: 0.025 ... MaxStarSize)
         let Node = SCNNode(geometry: SCNSphere(radius: CGFloat(StarSize)))
         Node.position = P
-//        Node.geometry?.firstMaterial?.diffuse.contents = StarColor
-        Node.geometry?.firstMaterial?.diffuse.contents = RandomStarColor()
+        if UseNaturalStarColors
+        {
+            Node.geometry?.firstMaterial?.diffuse.contents = RandomStarColor()
+        }
+        else
+        {
+            Node.geometry?.firstMaterial?.diffuse.contents = StarColor
+        }
         Node.geometry?.firstMaterial?.emission.contents = UIColor.yellow
         self.scene?.rootNode.addChildNode(Node)
         let ZGone = 1.0
         let Destination = SCNVector3(P.x, P.y, Float(ZGone))
-        let Duration = (ZGone - Double(P.z)) / SpeedMultiplier
+        let Duration = ZGone - Double(P.z)
         let Motion = SCNAction.move(to: Destination, duration: Duration)
-        Node.opacity = 0.0
-        let FadeIn = SCNAction.fadeIn(duration: 1.0)
-        let Group = SCNAction.group([FadeIn, Motion])
-        Node.runAction(Group)
+        Motion.speed = GlobalSpeed
+        Node.runAction(Motion)
         {
             Node.removeAllActions()
             Node.removeFromParentNode()
-            self.MakeStar(StarColor: UIColor.white, SpeedMultiplier: 1.0, MaxStarSize: 0.1)
+            self.MakeStar(StarColor: UIColor.white,
+                          MaxStarSize: 0.1)
         }
+        Node.opacity = 0.0
+        let FadeIn = SCNAction.fadeIn(duration: 1.0)
+        Node.runAction(FadeIn)
     }
     
     func RandomStarColor() -> UIColor
