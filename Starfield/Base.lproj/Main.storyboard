@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,21 +15,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" allowsCameraControl="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r9p-Gt-BPg" customClass="Starfield" customModule="Starfield" customModuleProvider="target">
-                                <rect key="frame" x="20" y="93" width="374" height="581"/>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" allowsCameraControl="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r9p-Gt-BPg" customClass="Starfield" customModule="Starfield" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="658"/>
+                                <viewLayoutGuide key="safeArea" id="PMR-yh-rWB"/>
                             </sceneKitView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Velocity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZg-cA-1my">
+                                <rect key="frame" x="17.999999999999996" y="722" width="60.666666666666657" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxl-VG-BoK">
+                                <rect key="frame" x="20" y="751" width="140" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="6Da-Jm-PmC"/>
+                                    <constraint firstAttribute="width" constant="140" id="OjL-Ml-FZp"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Qe5-Ns-kUu"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ND8-4d-VxG"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="r9p-Gt-BPg" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="0ki-jR-h4f"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r9p-Gt-BPg" secondAttribute="bottom" constant="188" id="4i2-Uw-p6s"/>
-                            <constraint firstItem="r9p-Gt-BPg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="49" id="75M-VF-CB0"/>
-                            <constraint firstItem="r9p-Gt-BPg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="B7P-sF-YFI"/>
+                            <constraint firstItem="r9p-Gt-BPg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="0ki-jR-h4f"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r9p-Gt-BPg" secondAttribute="bottom" constant="160" id="4i2-Uw-p6s"/>
+                            <constraint firstItem="lxl-VG-BoK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="74y-Z1-y5V"/>
+                            <constraint firstItem="r9p-Gt-BPg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="75M-VF-CB0"/>
+                            <constraint firstItem="r9p-Gt-BPg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="B7P-sF-YFI"/>
+                            <constraint firstItem="lxl-VG-BoK" firstAttribute="top" secondItem="LZg-cA-1my" secondAttribute="bottom" constant="8" symbolic="YES" id="HoA-nR-6j1"/>
+                            <constraint firstItem="LZg-cA-1my" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="18" id="auz-oT-uE1"/>
+                            <constraint firstItem="LZg-cA-1my" firstAttribute="top" secondItem="r9p-Gt-BPg" secondAttribute="bottom" constant="20" id="eDy-0j-gXh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="StarFieldViewer" destination="r9p-Gt-BPg" id="W7j-XO-zQ0"/>
+                        <outlet property="VelocityPicker" destination="lxl-VG-BoK" id="whc-82-KAS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
