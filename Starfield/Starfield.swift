@@ -41,6 +41,14 @@ class Starfield: SCNView
         CameraNode?.position = SCNVector3(0.0, 0.0, 0.0)
         self.scene?.rootNode.addChildNode(CameraNode!)
         
+        let CameraRoll = CABasicAnimation(keyPath: "eulerAngles.z")
+        CameraRoll.fromValue = 0.0 * CGFloat.pi / 180.0
+        CameraRoll.toValue = 359.0 * CGFloat.pi / 180.0
+        CameraRoll.duration = 60.0 * 5.0
+        CameraRoll.autoreverses = false
+        CameraRoll.repeatCount = .infinity
+        CameraNode?.addAnimation(CameraRoll, forKey: "z")
+        
         let Light = SCNLight()
         Light.type = .ambient
         Light.color = UIColor.white
@@ -51,12 +59,25 @@ class Starfield: SCNView
         
         self.backgroundColor = UIColor.black
         self.autoenablesDefaultLighting = false
-        
-        //FillStars(To: 1000)
     }
     
     var CameraNode: SCNNode? = nil
     var LightNode: SCNNode? = nil
+    
+    func Clear()
+    {
+        if self.scene?.rootNode.childNodes != nil
+        {
+            for StarNode in self.scene!.rootNode.childNodes
+            {
+                if StarNode.name == "Star"
+                {
+                StarNode.removeAllActions()
+                StarNode.removeFromParentNode()
+                }
+            }
+        }
+    }
     
     func FillStars(To Count: Int,
                    MaxSize: Double = 0.08,
@@ -68,7 +89,7 @@ class Starfield: SCNView
         for _ in 0 ..< Count
         {
             MakeStar(StarColor: UIColor.white,
-                     MaxStarSize: 0.08)
+                     MaxStarSize: 0.04)
         }
     }
     
@@ -97,11 +118,13 @@ class Starfield: SCNView
     var GlobalSpeed: CGFloat = 1.0
     
     func MakeStar(StarColor: UIColor, MaxStarSize: Double = 0.15,
-                  UseNaturalStarColors: Bool = false)
+                  UseNaturalStarColors: Bool = false, FarAway: Bool = false)
     {
-        let P = PointInSphere(Radius: 100.0)
+        let Range: Double = FarAway ? -0.5 : 0.0
+        let P = PointInSphere(Radius: 100.0, BaseRange: Range)
         let StarSize = Double.random(in: 0.025 ... MaxStarSize)
         let Node = SCNNode(geometry: SCNSphere(radius: CGFloat(StarSize)))
+        Node.name = "Star"
         Node.position = P
         if UseNaturalStarColors
         {
@@ -123,7 +146,8 @@ class Starfield: SCNView
             Node.removeAllActions()
             Node.removeFromParentNode()
             self.MakeStar(StarColor: UIColor.white,
-                          MaxStarSize: 0.1)
+                          MaxStarSize: MaxStarSize,
+                          FarAway: true)
         }
         Node.opacity = 0.0
         let FadeIn = SCNAction.fadeIn(duration: 1.0)
@@ -154,13 +178,13 @@ class Starfield: SCNView
     ]
     
     //http://datagenetics.com/blog/january32020/index.html
-    func PointInSphere(Radius: Double) -> SCNVector3
+    func PointInSphere(Radius: Double, BaseRange: Double = 0.0) -> SCNVector3
     {
         while true
         {
             let X = Double.random(in: -1.0 ... 1.0)
             let Y = Double.random(in: -1.0 ... 1.0)
-            let Z = Double.random(in: -1.0 ... 0.0)
+            let Z = Double.random(in: -1.0 ... BaseRange)
             if sqrt((X * X) + (Y * Y) + (Z * Z)) < 1.0
             {
                 return SCNVector3(X * Radius, Y * Radius, Z * Radius)
