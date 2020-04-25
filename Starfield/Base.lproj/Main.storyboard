@@ -36,6 +36,23 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ND8-4d-VxG"/>
                                 </connections>
                             </pickerView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XzZ-Pg-h1h">
+                                <rect key="frame" x="204" y="751" width="140" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="0Gp-ky-x0l"/>
+                                    <constraint firstAttribute="width" constant="140" id="RAK-Mb-RS7"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="VRk-G6-vF5"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="77B-Nn-7Qk"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QID-BI-ZRo">
+                                <rect key="frame" x="204" y="721" width="40" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -43,14 +60,19 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r9p-Gt-BPg" secondAttribute="bottom" constant="160" id="4i2-Uw-p6s"/>
                             <constraint firstItem="lxl-VG-BoK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="74y-Z1-y5V"/>
                             <constraint firstItem="r9p-Gt-BPg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="75M-VF-CB0"/>
+                            <constraint firstItem="XzZ-Pg-h1h" firstAttribute="top" secondItem="lxl-VG-BoK" secondAttribute="top" id="8w6-KN-pwK"/>
                             <constraint firstItem="r9p-Gt-BPg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="B7P-sF-YFI"/>
                             <constraint firstItem="lxl-VG-BoK" firstAttribute="top" secondItem="LZg-cA-1my" secondAttribute="bottom" constant="8" symbolic="YES" id="HoA-nR-6j1"/>
+                            <constraint firstItem="QID-BI-ZRo" firstAttribute="leading" secondItem="XzZ-Pg-h1h" secondAttribute="leading" id="J2I-Oy-xoF"/>
                             <constraint firstItem="LZg-cA-1my" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="18" id="auz-oT-uE1"/>
+                            <constraint firstItem="XzZ-Pg-h1h" firstAttribute="leading" secondItem="lxl-VG-BoK" secondAttribute="trailing" constant="44" id="c4f-f6-CcX"/>
                             <constraint firstItem="LZg-cA-1my" firstAttribute="top" secondItem="r9p-Gt-BPg" secondAttribute="bottom" constant="20" id="eDy-0j-gXh"/>
+                            <constraint firstItem="QID-BI-ZRo" firstAttribute="baseline" secondItem="LZg-cA-1my" secondAttribute="baseline" constant="-1" id="tPN-PW-ZC0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="StarCountPicker" destination="XzZ-Pg-h1h" id="DR8-O2-xSn"/>
                         <outlet property="StarFieldViewer" destination="r9p-Gt-BPg" id="W7j-XO-zQ0"/>
                         <outlet property="VelocityPicker" destination="lxl-VG-BoK" id="whc-82-KAS"/>
                     </connections>
